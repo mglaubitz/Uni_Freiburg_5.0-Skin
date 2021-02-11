@@ -1,4 +1,4 @@
-<div id="ilTopBar" class="ilTopBar ilTopFixed{TOPBAR_CLASS}">
+<div id="ilTopBar" class="ilTopBar ilTopFixed{TOPBAR_CLASS} hidden-print">
 	<div class="container-fluid ilContainerWidth">
 		<div class="row">
 			<!-- BEGIN header_top_title -->
@@ -14,30 +14,24 @@
 				<!-- BEGIN topbar_icons_bl -->
 				<ul id="ilTopBarNav" class="">					
 					<!-- BEGIN status_box -->
-						<!-- BEGIN status_item -->
-						<li><a target="_top" href="{STATUS_HREF}"><span class="glyphicon glyphicon-envelope"></span> <!-- BEGIN status_text --><span class="badge">{STATUS_TXT}</span><span class="ilBadgeSpacer">{STATUS_TXT}</span><!-- END status_text --></a></li>
-						<!-- END status_item -->
+					<li id="{STATUS_ID}">{GLYPH}</li>
 					<!-- END status_box -->
 					<!-- BEGIN help_icon -->
-						<li><a id="help_tr" href="#" onclick="return il.Help.listHelp(event, false);"><img src="{IMG_HELP}" alt="" /></a></li>
+					<li><a id="help_tr" href="#" onclick="return il.Help.listHelp(event, false);"><img src="{IMG_HELP}" alt=""/></a></li>
 					<!-- END help_icon -->
 					<!-- BEGIN help_tt_icon -->
-						<li><a id="help_tt" href="#" onclick="return il.Help.switchTooltips(event);"><img src="{IMG_TT_ON}" id="help_tt_switch_on" alt="" /><img class="ilNoDisplay" src="{IMG_TT_OFF}" id="help_tt_switch_off" alt="" /></a></li>
+					<li><a id="help_tt" href="#" onclick="return il.Help.switchTooltips(event);"><img src="{IMG_TT_ON}" id="help_tt_switch_on" alt="" /><img class="ilNoDisplay" src="{IMG_TT_OFF}" id="help_tt_switch_off" alt=""/></a></li>
 					<!-- END help_tt_icon -->
-					{AWARENESS}
+					{ONSCREENCHAT} {AWARENESS}
+					<li id="mm_tb_background_tasks" aria-hidden="{BGT_HIDDEN}" class="mm_background_tasks" data-refresh-uri="{BACKGROUNDTASKS_REFRESH_URI}">{BACKGROUNDTASKS}</li>
 					<!-- BEGIN search_box -->{SEARCHBOX}<!-- END search_box -->
 					<!-- BEGIN help -->
-					<li id="mm_help" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<span class="visible-xs-inline glyphicon glyphicon-question-sign"></span>
-						<span class="hidden-xs">{TXT_HELP} <span class="caret"></span></span></a>
-						{HELP_SELECT}
+					<li id="mm_help"><a href="#" onclick="{HELP_CLICK}"> <span class="visible-xs-inline glyphicon glyphicon-question-sign"></span> <span class="hidden-xs">{TXT_HELP}</span></a>
 					</li>
 					<!-- END help -->
 					<!-- BEGIN userisloggedin -->
 					<li id="userlog" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<span>{USER_IMG}<!--{USERNAME}--><span class="caret"></span></span>
-						</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>{USER_IMG}<!--{USERNAME}--><span class="caret"></span></span></a>
 						<ul class="dropdown-menu pull-right" role="menu">
 							<li>
 								<a href="{USR_LINK_PROFILE}" target="_top">{USR_TXT_PROFILE}</a>
@@ -47,14 +41,13 @@
 							</li>
 							<li role="presentation" class="divider"></li>
 							<li>
-							<a href="{LINK_LOGOUT2}"><i>{USERNAME}</i> - {TXT_LOGOUT2}</a>
+							<a href="{LINK_LOGOUT2}"><i>{USERNAME}</i>{TXT_LOGOUT2}</a>
 							</li>
 						</ul>
 					</li>
 					<!-- END userisloggedin -->
 					<!-- BEGIN lang_select -->
-					<li class="dropdown"><a id="mm_lang_sel" href="#" class="dropdown-toggle" data-toggle="dropdown">{TXT_LANGSELECT} <span class="caret"></span></a>
-						{LANG_SELECT}
+					<li class="dropdown"><a id="mm_lang_sel" href="#" class="dropdown-toggle" data-toggle="dropdown">{TXT_LANGSELECT} <span class="caret"></span></a> {LANG_SELECT}
 					</li>
 					<!-- END lang_select -->
 					<!-- BEGIN userisanonymous -->
@@ -82,21 +75,21 @@
 	</script><!-- END osd_enabled -->
 <!-- BEGIN osd_container --><div class="osdNotificationContainer"></div><!-- END osd_container -->
 <!-- BEGIN main_menu_bl -->
-<div class="ilMainHeader ilTopFixed">
+<div class="ilMainHeader ilTopFixed hidden-print">
 	<header class="container-fluid ilContainerWidth">
 		<div class="row">
-			<a class="navbar-brand" href="{HEADER_URL}" target="_top">
-				<img src="{HEADER_ICON}" alt="Logo" class="noMirror" /></a>
+			<a class="navbar-brand" href="{HEADER_URL}" target="_top">_<img class="hidden-xs noMirror" alt="{LOGO_TITLE}" src="{HEADER_ICON}"/>_<img class="visible-xs-inline-block noMirror" alt="{LOGO_TITLE}" src="{HEADER_ICON_RESPONSIVE}">_</a>
 		</div>
 	</header>
 </div>
-<div class="ilMainMenu ilTopFixed">
+<div class="ilMainMenu ilTopFixed hidden-print">
 <div class="container-fluid ilContainerWidth">
 	<div class="row">
-		<nav id="ilTopNav" class="navbar navbar-default" role="navigation">
-			
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
+		<nav id="ilTopNav" class="navbar navbar-default">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="ilMainMenuEntries">{MAIN_MENU_LIST_ENTRIES}</div><!-- /.navbar-collapse -->
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ilMainMenuEntries">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
@@ -105,13 +98,6 @@
 					</button>
 					<!-- <a class="navbar-brand" href="#">Brand</a> -->
 				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="ilMainMenuEntries">
-					{MAIN_MENU_LIST_ENTRIES}
-					
-				</div><!-- /.navbar-collapse -->
-			
 		</nav>
 
 		<!-- BEGIN screen_id -->
